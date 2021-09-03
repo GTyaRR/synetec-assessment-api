@@ -45,7 +45,7 @@ namespace SynetecAssessmentApi.Tests
                 DepartmentId = 2
             };
 
-            Assert.Equal(result.Amount.ToString(), actualResult.Amount.ToString());
+            Assert.Equal(result.Amount, actualResult.Amount);
         }
     }
 }

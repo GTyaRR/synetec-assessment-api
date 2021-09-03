@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SynetecAssessmentApi.BusinessLogic.DependencyInjection;
 using SynetecAssessmentApi.DataAccess;
 
 namespace SynetecAssessmentApi
@@ -29,6 +30,8 @@ namespace SynetecAssessmentApi
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseInMemoryDatabase(databaseName: "HrDb"));
+
+            services.SetDependencies();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

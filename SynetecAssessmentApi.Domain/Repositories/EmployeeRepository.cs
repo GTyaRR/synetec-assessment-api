@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SynetecAssessmentApi.DataAccess.DTO;
 using SynetecAssessmentApi.DataAccess.Entities;
 using SynetecAssessmentApi.DataAccess.Repositories.Base;
 using SynetecAssessmentApi.DataAccess.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -55,6 +57,26 @@ namespace SynetecAssessmentApi.DataAccess.Repositories
             var totalSalary = await _context.Employees
                 .SumAsync(s => s.Salary);
             return totalSalary;
+        }
+
+        public async Task<List<EmployeeFinanceSummary>> GetEmployeeFinanceSummary(int bonusPoolAmount)
+        {
+            int totalSalary = await GetTotalSalary();
+
+            var summaryList = await _context.Employees
+                .AsNoTracking()
+                .Include(i => i.Department)
+                .Select(s => new EmployeeFinanceSummary
+                {
+                    EmployeeId = s.Id,
+                    EmployeeFullName = s.Fullname,
+                    EmployeeJobTitle = s.JobTitle,
+                    Salary = s.Salary,
+                    SalaryPercentage = Math.Round(((decimal)s.Salary/(decimal)totalSalary)*100,2 ) + " %",
+                    BonusAmount = Math.Round(bonusPoolAmount * ((decimal)s.Salary/(decimal)totalSalary),2),
+                    EmployeeDepartmentTitle = s.Department.Title
+                }).ToListAsync();
+            return summaryList;
         }
     }
 }

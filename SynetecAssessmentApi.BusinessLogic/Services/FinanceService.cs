@@ -5,22 +5,21 @@ using SynetecAssessmentApi.BusinessLogic.ViewModels.FinanceModels;
 using SynetecAssessmentApi.BusinessLogic.ViewModels.RequestModels;
 using SynetecAssessmentApi.DataAccess.Repositories.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SynetecAssessmentApi.BusinessLogic.Services
 {
     public class FinanceService : IFinanceService
     {
-        private readonly IDepartmentRepository _departmentRepository;
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IMapper _autoMapper;
 
         public FinanceService(
-            IDepartmentRepository departmentRepository,
             IEmployeeRepository employeeRepository,
             IMapper mapper)
         {
-            _departmentRepository = departmentRepository;
             _employeeRepository = employeeRepository;
             _autoMapper = mapper;
         }
@@ -44,6 +43,23 @@ namespace SynetecAssessmentApi.BusinessLogic.Services
             responseModel.Employee = _autoMapper.Map<EmployeeViewModel>(employee);
             return responseModel;
         }
+        
+        public async Task<List<EmployeeFinanceSummaryViewModel>> GetEmployeeFinanceSummary(int bonusPoolAmount)
+        {
+            if (bonusPoolAmount <= 0)
+            {
+                throw new ApplicationException(" Bonus pool amount must be more than 0");
+            }
 
+            var employees = await _employeeRepository.GetEmployeeFinanceSummary(bonusPoolAmount);
+            if (!employees.Any())
+            {
+                throw new ApplicationException(" Employees was not found");
+            }
+            var responseList = new List<EmployeeFinanceSummaryViewModel>();
+
+            _autoMapper.Map(employees, responseList);
+            return responseList;
+        }
     }
 }

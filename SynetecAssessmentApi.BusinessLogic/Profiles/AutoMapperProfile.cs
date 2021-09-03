@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using SynetecAssessmentApi.BusinessLogic.ViewModels.DepartmentModels;
 using SynetecAssessmentApi.BusinessLogic.ViewModels.EmployeesModels;
+using SynetecAssessmentApi.BusinessLogic.ViewModels.FinanceModels;
+using SynetecAssessmentApi.DataAccess.DTO;
 using SynetecAssessmentApi.DataAccess.Entities;
 
 namespace SynetecAssessmentApi.BusinessLogic.Profiles
@@ -15,6 +17,8 @@ namespace SynetecAssessmentApi.BusinessLogic.Profiles
 
             CreateMap<Employee, EmployeeViewModel>();
             CreateMap<Employee, EmployeeWithDepartmentViewModel>();
+
+            CreateMap<EmployeeFinanceSummary, EmployeeFinanceSummaryViewModel>();
         }
     }
 }

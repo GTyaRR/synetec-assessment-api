@@ -4,6 +4,7 @@ using SynetecAssessmentApi.BusinessLogic.ViewModels.FinanceModels;
 using SynetecAssessmentApi.BusinessLogic.ViewModels.RequestModels;
 using SynetecAssessmentApi.Dtos;
 using SynetecAssessmentApi.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SynetecAssessmentApi.Controllers
@@ -36,6 +37,19 @@ namespace SynetecAssessmentApi.Controllers
         {
             var response = await _financeService.GetEmployeeBonusPool(requestModel);
             return Ok(response);
+        }
+
+        /// <summary>
+        /// Get employees finance summary.
+        /// </summary>
+        /// <param name="bonusPoolAmount"></param>
+        /// <returns></returns>
+        [HttpGet("GetEmployeeFinanceSummary/{bonusPoolAmount}")]
+        [ProducesResponseType(typeof(List<EmployeeFinanceSummaryViewModel>), 200)]
+        public async Task<IActionResult> GetEmployeeFinanceSummary(int bonusPoolAmount)
+        {
+            var responseList = await _financeService.GetEmployeeFinanceSummary(bonusPoolAmount);
+            return Ok(responseList);
         }
     }
 }

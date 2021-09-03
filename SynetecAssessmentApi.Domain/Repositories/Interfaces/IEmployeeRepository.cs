@@ -1,4 +1,5 @@
-﻿using SynetecAssessmentApi.DataAccess.Entities;
+﻿using SynetecAssessmentApi.DataAccess.DTO;
+using SynetecAssessmentApi.DataAccess.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,5 +13,6 @@ namespace SynetecAssessmentApi.DataAccess.Repositories.Interfaces
         IEnumerable<Employee> GetListWithDepartments();
         IEnumerable<Employee> GetListByDepartment(int departmentId);
         Task<int> GetTotalSalary();
+        Task<List<EmployeeFinanceSummary>> GetEmployeeFinanceSummary(int bonusPoolAmount);
     }
 }

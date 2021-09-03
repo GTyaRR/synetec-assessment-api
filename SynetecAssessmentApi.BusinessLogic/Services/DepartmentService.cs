@@ -2,6 +2,7 @@
 using SynetecAssessmentApi.BusinessLogic.Services.Interfaces;
 using SynetecAssessmentApi.BusinessLogic.ViewModels.DepartmentModels;
 using SynetecAssessmentApi.DataAccess.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,13 +20,29 @@ namespace SynetecAssessmentApi.BusinessLogic.Services
 
         public async Task<DepartmentViewModel> GetById(int departmentId)
         {
+            if (departmentId <= 0)
+            {
+                throw new ApplicationException("DepartmentId must be greater than zero");
+            }
             var department = await _departmentRepository.FindById(departmentId);
+            if (department is null)
+            {
+                throw new ApplicationException("Department was not found");
+            }
             var departmentModel = _autoMapper.Map<DepartmentViewModel>(department);
             return departmentModel;
         }
         public async Task<DepartmentWithEmployeesViewModel> GetByIdWithEmployees(int departmentId)
         {
+            if (departmentId <= 0)
+            {
+                throw new ApplicationException("DepartmentId must be greater than zero");
+            }
             var department = await _departmentRepository.GetWithEmployees(departmentId);
+            if (department is null)
+            {
+                throw new ApplicationException("Department was not found");
+            }
             var departmentModel = _autoMapper.Map<DepartmentWithEmployeesViewModel>(department);
             return departmentModel;
         }

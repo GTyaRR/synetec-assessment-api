@@ -19,6 +19,10 @@ namespace SynetecAssessmentApi.BusinessLogic.Services
         }
         public async Task<EmployeeViewModel> GetById(int employeeId)
         {
+            if (employeeId <= 0)
+            {
+                throw new ApplicationException("EmployeeId must be greater than zero");
+            }
             var employee = await _employeeRepository.FindById(employeeId);
             if (employee is null)
             {
@@ -29,6 +33,10 @@ namespace SynetecAssessmentApi.BusinessLogic.Services
         }
         public async Task<EmployeeWithDepartmentViewModel> GetByIdWithDepartment(int employeeId)
         {
+            if (employeeId <= 0)
+            {
+                throw new ApplicationException("EmployeeId must be greater than zero");
+            }
             var employee = await _employeeRepository.GetWithDepartment(employeeId);
             var employeeModel = _autoMapper.Map<EmployeeWithDepartmentViewModel>(employee);
             return employeeModel;

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace SynetecAssessmentApi.DataAccess.Repositories
+namespace SynetecAssessmentApi.DataAccess.Repositories.Base
 {
     public class BaseRepository<TEntity> where TEntity : Entities.Base.Base
     {

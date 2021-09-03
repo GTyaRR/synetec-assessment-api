@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SynetecAssessmentApi.DataAccess.Entities;
+using SynetecAssessmentApi.DataAccess.Repositories.Base;
 using SynetecAssessmentApi.DataAccess.Repositories.Interfaces;
 using System.Collections.Generic;
 using System.Linq;

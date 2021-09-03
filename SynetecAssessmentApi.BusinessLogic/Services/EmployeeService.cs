@@ -2,6 +2,7 @@
 using SynetecAssessmentApi.BusinessLogic.Services.Interfaces;
 using SynetecAssessmentApi.BusinessLogic.ViewModels.EmployeesModels;
 using SynetecAssessmentApi.DataAccess.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,6 +20,10 @@ namespace SynetecAssessmentApi.BusinessLogic.Services
         public async Task<EmployeeViewModel> GetById(int employeeId)
         {
             var employee = await _employeeRepository.FindById(employeeId);
+            if (employee is null)
+            {
+                throw new ApplicationException("Employee was not found");
+            }
             var employeeModel = _autoMapper.Map<EmployeeViewModel>(employee);
             return employeeModel;
         }

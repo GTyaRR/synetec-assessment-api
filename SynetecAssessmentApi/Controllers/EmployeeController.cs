@@ -2,6 +2,7 @@
 using SynetecAssessmentApi.BusinessLogic.Services.Interfaces;
 using SynetecAssessmentApi.BusinessLogic.ViewModels.EmployeesModels;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace SynetecAssessmentApi.Controllers

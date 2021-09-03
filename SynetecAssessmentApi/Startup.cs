@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using SynetecAssessmentApi.BusinessLogic.DependencyInjection;
 using SynetecAssessmentApi.DataAccess;
+using SynetecAssessmentApi.Middlewares;
 
 namespace SynetecAssessmentApi
 {
@@ -49,6 +50,8 @@ namespace SynetecAssessmentApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseHttpStatusCodeExceptionMiddleware();
 
             app.UseEndpoints(endpoints =>
             {

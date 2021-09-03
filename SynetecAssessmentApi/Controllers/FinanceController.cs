@@ -2,8 +2,6 @@
 using SynetecAssessmentApi.BusinessLogic.Services.Interfaces;
 using SynetecAssessmentApi.BusinessLogic.ViewModels.FinanceModels;
 using SynetecAssessmentApi.BusinessLogic.ViewModels.RequestModels;
-using SynetecAssessmentApi.Dtos;
-using SynetecAssessmentApi.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

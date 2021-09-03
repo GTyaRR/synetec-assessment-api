@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SynetecAssessmentApi.Domain\SynetecAssessmentApi.Domain.csproj" />
+    <ProjectReference Include="..\SynetecAssessmentApi.Domain\SynetecAssessmentApi.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

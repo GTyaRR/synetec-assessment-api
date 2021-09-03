@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SynetecAssessmentApi.Domain;
+using SynetecAssessmentApi.DataAccess;
+using SynetecAssessmentApi.DataAccess.Entities;
 using SynetecAssessmentApi.Dtos;
-using SynetecAssessmentApi.Persistence;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

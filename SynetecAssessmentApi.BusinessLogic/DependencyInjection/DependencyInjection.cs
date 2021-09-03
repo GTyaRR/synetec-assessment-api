@@ -25,6 +25,7 @@ namespace SynetecAssessmentApi.BusinessLogic.DependencyInjection
 
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IFinanceService, FinanceService>();
         }
     }
 }

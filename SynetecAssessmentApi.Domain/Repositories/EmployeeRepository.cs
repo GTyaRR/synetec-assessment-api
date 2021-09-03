@@ -50,5 +50,11 @@ namespace SynetecAssessmentApi.DataAccess.Repositories
                 .OrderByDescending(o => o.Fullname);
             return employeesByDepartment;
         }
+        public async Task<int> GetTotalSalary()
+        {
+            var totalSalary = await _context.Employees
+                .SumAsync(s => s.Salary);
+            return totalSalary;
+        }
     }
 }

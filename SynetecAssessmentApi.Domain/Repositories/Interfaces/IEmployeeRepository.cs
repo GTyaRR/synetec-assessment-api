@@ -11,5 +11,6 @@ namespace SynetecAssessmentApi.DataAccess.Repositories.Interfaces
         IEnumerable<Employee> GetList();
         IEnumerable<Employee> GetListWithDepartments();
         IEnumerable<Employee> GetListByDepartment(int departmentId);
+        Task<int> GetTotalSalary();
     }
 }

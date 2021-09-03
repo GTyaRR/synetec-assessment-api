@@ -14,6 +14,7 @@ namespace SynetecAssessmentApi.BusinessLogic.Profiles
                 .ForMember(d => d.DepartmentEmployees, o => o.MapFrom(s => s.Employees));
 
             CreateMap<Employee, EmployeeViewModel>();
+            CreateMap<Employee, EmployeeWithDepartmentViewModel>();
         }
     }
 }
